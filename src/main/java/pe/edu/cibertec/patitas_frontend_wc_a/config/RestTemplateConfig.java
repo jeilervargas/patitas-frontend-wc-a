@@ -14,7 +14,7 @@ public class RestTemplateConfig {
     public RestTemplate restTemplateAutenticacion(RestTemplateBuilder builder) {
         return builder
                 .rootUri("http://localhost:8081/autenticacion")
-                .setConnectTimeout(Duration.ofSeconds(5)) //tiempo de espera maximo para establecer la conexion
+                .setConnectTimeout(Duration.ofSeconds(10)) //tiempo de espera maximo para establecer la conexion
                 .setReadTimeout(Duration.ofSeconds(10)) // tiempo de espera maximo para recibir la respuesta total
                 .build();
     }

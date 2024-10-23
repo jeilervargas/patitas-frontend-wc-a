@@ -9,6 +9,6 @@ public class AutenticacionFeignConfig {
 
     @Bean
     public Request.Options feignRequestOptions() {
-        return new Request.Options(10000, 10000);
+        return new Request.Options(2000, 2000);
     }
 }

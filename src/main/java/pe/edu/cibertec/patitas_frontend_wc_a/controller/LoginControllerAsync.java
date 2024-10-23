@@ -30,7 +30,7 @@ public class LoginControllerAsync {
             loginRequestDTO.numeroDocumento() == null || loginRequestDTO.numeroDocumento().trim().length() == 0 ||
             loginRequestDTO.password() == null || loginRequestDTO.password().trim().length() == 0) {
 
-            return Mono.just(new LoginResponseDTO("01", "Error: Debe completar correctamente sus credenciales", "", ""));
+            return Mono.just(new LoginResponseDTO("01", "Error: Debe completar correctamente sus credenciales", "", "","",""));
 
         }
 
@@ -45,9 +45,9 @@ public class LoginControllerAsync {
                     .flatMap(response -> {
 
                         if(response.codigo().equals("00")) {
-                            return Mono.just(new LoginResponseDTO("00", "", response.nombreUsuario(), ""));
+                            return Mono.just(new LoginResponseDTO("00", "", response.nombreUsuario(), response.correoUsuario(), response.tipoDocumento(), response.numeroDocumento()));
                         } else {
-                            return Mono.just(new LoginResponseDTO("02", "Error: Autenticación fallida", "", ""));
+                            return Mono.just(new LoginResponseDTO("02", "Error: Autenticación fallida", "", "", "", ""));
                         }
 
                     });
@@ -55,7 +55,7 @@ public class LoginControllerAsync {
         } catch(Exception e) {
 
             System.out.println(e.getMessage());
-            return Mono.just(new LoginResponseDTO("99", "Error: Ocurrió un problema en la autenticación", "", ""));
+            return Mono.just(new LoginResponseDTO("99", "Error: Ocurrió un problema en la autenticación", "", "", "", ""));
 
         }
 
